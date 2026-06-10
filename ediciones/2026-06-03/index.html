@@ -16,17 +16,17 @@
     <!-- Librerías base del Flipbook -->
     <script
       type="text/javascript"
-      src="../flipbook/extras/jquery.min.1.7.js"
+      src="../../flipbook/extras/jquery.min.1.7.js"
     ></script>
     <script
       type="text/javascript"
-      src="../flipbook/extras/jquery-ui-1.8.20.full.min.js"
+      src="../../flipbook/extras/jquery-ui-1.8.20.full.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="../flipbook/extras/modernizr.2.5.3.min.js"
+      src="../../flipbook/extras/modernizr.2.5.3.min.js"
     ></script>
-    <script type="text/javascript" src="../flipbook/lib/hash.js"></script>
+    <script type="text/javascript" src="../../flipbook/lib/hash.js"></script>
 
     <!-- Configuración Core -->
     <script type="text/javascript">
@@ -53,42 +53,304 @@
       };
     </script>
 
-    <style>
-      body {
-        overflow-y: scroll;
-        margin: 0;
-        padding: 0;
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background-color: #f1f1f1;
-      }
-      ::-webkit-scrollbar-thumb {
-        background-color: #888;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-      }
-      .logo-backs {
-        opacity: 0.4;
-      }
-      @media only screen and (max-width: 750px) {
-        .zoom-icon {
-          display: none;
-        }
-        .controls-pdf {
-          right: 20px !important;
-        }
-      }
-    </style>
+<style>
+
+:root{
+    --primary:#0f172a;
+    --secondary:#1e293b;
+    --accent:#2563eb;
+    --accent-hover:#1d4ed8;
+    --text:#ffffff;
+}
+
+body{
+    overflow-y:scroll;
+    margin:0;
+    padding-top:55px;
+    background:#f3f3f3;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#1e293b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#475569;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
+}
+
+/* TOPBAR */
+
+.topbar{
+
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+
+    background:rgba(15,23,42,.95);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    z-index:99999;
+}
+
+.back-btn{
+
+    text-decoration:none;
+    color:white;
+
+    background:var(--accent);
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:var(--accent-hover);
+}
+
+.edition-title{
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:16px;
+}
+
+.fullscreen-btn{
+
+    border:none;
+
+    background:#334155;
+
+    color:white;
+
+    width:42px;
+    height:42px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:18px;
+}
+
+/* PAGE INDICATOR */
+
+.page-indicator{
+
+    position:fixed;
+
+    top:74px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:rgba(15,23,42,.95);
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    z-index:9999;
+}
+
+/* FLIPBOOK */
+
+.magazine-viewport{
+
+    touch-action:pan-y;
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:12px;
+
+    z-index:9999;
+}
+
+.mobile-nav button{
+
+    width:60px;
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--accent);
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.35);
+}
+
+/* LOADER */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#0f172a;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    z-index:999999;
+}
+
+.spinner{
+
+    width:60px;
+    height:60px;
+
+    border:5px solid rgba(255,255,255,.15);
+
+    border-top:5px solid white;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+#loader p{
+
+    color:white;
+
+    font-size:18px;
+}
+
+.logo-backs{
+    opacity:.4;
+}
+
+/* MÓVIL */
+
+@media(max-width:768px){
+
+    .edition-title{
+        display:none;
+    }
+
+    .controls-pdf{
+        right:10px !important;
+    }
+
+    .zoom-icon{
+        display:none !important;
+    }
+}
+
+/* ESCRITORIO */
+
+@media(min-width:769px){
+
+    .mobile-nav{
+        display:none;
+    }
+}
+
+</style>
   </head>
   <body>
+
+<!-- ===================================================== -->
+<!-- BARRA SUPERIOR -->
+<!-- ===================================================== -->
+
+<header class="topbar">
+
+    <a href="../../index.html" class="back-btn">
+        ← Volver al catálogo
+    </a>
+
+    <div class="edition-title">
+        Mérida | Segura y Soberana
+    </div>
+
+    <button class="fullscreen-btn" onclick="openFullscreen()">
+        ⛶
+    </button>
+
+</header>
+
+<!-- Indicador de página -->
+
+<div class="page-indicator">
+    Página <span id="currentPage">1</span>
+</div>
+
     <div class="logo-backs"></div>
 
     <!-- Efecto de sonido de página -->
-    <audio id="audio" src="../flipbook/pics/page-flip.mp3"></audio>
+    <audio id="audio" src="../../flipbook/pics/page-flip.mp3"></audio>
 
     <div id="canvas">
       <div class="controls-pdf">
@@ -103,7 +365,7 @@
               font-weight: bold;
             "
           >
-            <img src="../flipbook/pics/zoomin.png" alt="Acercar" />
+            <img src="../../flipbook/pics/zoomin.png" alt="Acercar" />
           </a>
           <a
             href="#"
@@ -115,12 +377,12 @@
               font-weight: bold;
             "
           >
-            <img src="../flipbook/pics/zoomout.png" alt="Alejar" />
+            <img src="../../flipbook/pics/zoomout.png" alt="Alejar" />
           </a>
         </div>
           <img
             style="display: none"
-            src="../flipbook/pics/down-pdf.png"
+            src="../../flipbook/pics/down-pdf.png"
             alt="Descargar PDF"
           />
         </a>
@@ -128,7 +390,7 @@
         <input
           type="image"
           class="fs"
-          src="../flipbook/pics/fs.png"
+          src="../../flipbook/pics/fs.png"
           onclick="openFullscreen()"
           alt="Pantalla Completa"
         />
@@ -152,25 +414,98 @@
       </div>
     </div>
 
+    <!-- ===================================================== -->
+<!-- NAVEGACIÓN MÓVIL -->
+<!-- ===================================================== -->
+
+<div class="mobile-nav">
+
+    <button onclick="$('#prev').click()">
+        ◀
+    </button>
+
+    <button onclick="$('#next').click()">
+        ▶
+    </button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- LOADER -->
+<!-- ===================================================== -->
+
+<div id="loader">
+
+    <div class="spinner"></div>
+
+    <p>Cargando edición...</p>
+
+</div>
+
     <!-- Scripts de carga diferida (yepnope) -->
-    <script type="text/javascript" src="../flipbook/js/core2.js"></script>
+    <script type="text/javascript" src="../../flipbook/js/core2.js"></script>
     <script type="text/javascript">
       yepnope({
         test: Modernizr.csstransforms,
-        yep: ["../flipbook/lib/turn.min.js"],
+        yep: ["../../flipbook/lib/turn.min.js"],
         nope: [
-          "../flipbook/lib/turn.html4.min.js",
-          "../flipbook/css/jquery.ui.html4.css",
+          "../../flipbook/lib/turn.html4.min.js",
+          "../../flipbook/css/jquery.ui.html4.css",
         ],
         both: [
-          "../flipbook/lib/zoom.min.js",
-          "../flipbook/css/jquery.ui.css",
-          "../flipbook/js/magazineoff.js",
-          "../flipbook/css/magazine2.css",
+          "../../flipbook/lib/zoom.min.js",
+          "../../flipbook/css/jquery.ui.css",
+          "../../flipbook/js/magazineoff.js",
+          "../../flipbook/css/magazine2.css",
         ],
         complete: loadApp,
       });
+
+setTimeout(function(){
+
+    const loader =
+    document.getElementById("loader");
+
+    if(loader){
+
+        loader.style.opacity = "0";
+
+        setTimeout(function(){
+
+            loader.remove();
+
+        },500);
+
+    }
+
+},1500);
     </script>
+    <script>
+
+setInterval(function(){
+
+    if(typeof jQuery !== "undefined"){
+
+        try{
+
+            var page =
+            $(".magazine").turn("page");
+
+            if(page){
+
+                document.getElementById(
+                "currentPage"
+                ).textContent = page;
+
+            }
+
+        }catch(e){}
+
+    }
+
+},300);
+
+</script>
 
     <!-- Script de Pantalla Completa (Nativo) -->
     <script>

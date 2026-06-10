@@ -1,23 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hemeroteca | Mi Periódico Digital</title>
+<title>Mérida | Segura y Soberana</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-    --primary:#0f172a;
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card-hover:#334155;
     --accent:#2563eb;
     --accent-hover:#1d4ed8;
-    --bg:#f8fafc;
-    --card:#ffffff;
-    --text:#1e293b;
-    --muted:#64748b;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,.08);
 }
 
 *{
@@ -26,205 +28,487 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:'Inter',sans-serif;
     background:var(--bg);
     color:var(--text);
 }
 
+/* HERO */
+
 .hero{
-    background:
-    linear-gradient(rgba(15,23,42,.85),
-    rgba(15,23,42,.85)),
-    url('assets/fondo.jpg') no-repeat;
+    min-height:70vh;
+    position:relative;
+    display:flex;
+    align-items:end;
+    overflow:hidden;
+}
+
+.hero-bg{
+    position:absolute;
+    inset:0;
     background-size:cover;
     background-position:center;
+    transform:scale(1.05);
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+    to top,
+    rgba(15,23,42,.98),
+    rgba(15,23,42,.4));
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    width:min(1200px,90%);
+    margin:auto;
+    padding-bottom:80px;
+}
+
+.badge{
+    display:inline-block;
+    background:#ef4444;
     color:white;
-    text-align:center;
-    padding:90px 20px;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:700;
+    margin-bottom:15px;
 }
 
 .hero h1{
-    font-family:'Playfair Display',serif;
-    font-size:3rem;
+    font-size:clamp(2rem,5vw,4rem);
     margin-bottom:15px;
 }
 
 .hero p{
-    font-size:1.1rem;
-    opacity:.9;
+    color:var(--muted);
+    max-width:700px;
+    margin-bottom:25px;
 }
+
+.hero-btn{
+    display:inline-flex;
+    gap:10px;
+    align-items:center;
+    text-decoration:none;
+    color:white;
+    background:var(--accent);
+    padding:15px 25px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.hero-btn:hover{
+    background:var(--accent-hover);
+}
+
+/* CONTAINER */
 
 .container{
-    max-width:1200px;
+    width:min(1300px,92%);
     margin:auto;
-    padding:60px 20px;
 }
 
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin:50px 0;
 }
 
-.section-title h2{
+.stat{
+    background:var(--card);
+    padding:30px;
+    border-radius:20px;
+    border:1px solid var(--border);
+}
+
+.stat-number{
     font-size:2rem;
-    margin-bottom:10px;
+    font-weight:800;
 }
 
-.section-title p{
+.stat-label{
     color:var(--muted);
 }
 
+/* FILTERS */
+
+.controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:40px;
+}
+
+.search{
+    flex:1;
+    min-width:250px;
+}
+
+input,
+select{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:var(--card);
+    color:white;
+    outline:none;
+}
+
+/* GRID */
+
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:
+    repeat(auto-fill,minmax(280px,1fr));
     gap:25px;
+    margin-bottom:80px;
 }
 
 .card{
     background:var(--card);
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
+    border:1px solid var(--border);
+    transition:.35s;
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
+    transform:translateY(-10px);
+    background:var(--card-hover);
 }
 
 .cover{
-    height:220px;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-size:2rem;
-    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+    height:400px;
 }
 
-.content{
-    padding:24px;
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.card:hover .cover img{
+    transform:scale(1.08);
+}
+
+.card-content{
+    padding:20px;
 }
 
 .date{
     color:var(--muted);
     font-size:.9rem;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
-.content h3{
-    margin-bottom:12px;
-}
-
-.content p{
-    color:var(--muted);
-    line-height:1.6;
+.title{
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:15px;
 }
 
 .btn{
     display:inline-block;
-    margin-top:18px;
-    background:var(--accent);
-    color:white;
     text-decoration:none;
-    padding:12px 20px;
+    color:white;
+    background:var(--accent);
+    padding:12px 18px;
     border-radius:10px;
     font-weight:600;
-    transition:.3s;
 }
 
 .btn:hover{
     background:var(--accent-hover);
 }
 
+.new-tag{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#ef4444;
+    color:white;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+/* FOOTER */
+
 footer{
     text-align:center;
-    padding:30px;
     color:var(--muted);
+    padding:50px 20px;
+    border-top:1px solid var(--border);
+}
+
+/* ANIMACIÓN */
+
+.card{
+    animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
+<!-- ====================================================== -->
+
+<!-- SOLO AGREGA NUEVAS EDICIONES AQUÍ -->
+
+<!-- ====================================================== -->
+
+<script>
+
+const ediciones = [
+
+{
+titulo:"Edición 10 Junio 2026",
+fecha:"2026-06-10",
+anio:"2026",
+mes:"Junio",
+portada:"ediciones/prueba/data/1.jpg",
+enlace:"2026-06-10/index.html",
+nueva:true
+},
+
+// {
+// titulo:"Edición 03 Junio 2026",
+// fecha:"2026-06-03",
+// anio:"2026",
+// mes:"Junio",
+// portada:"ediciones/2026-06-03/data/1.jpg",
+// enlace:"2026-06-03/index.html",
+// nueva:false
+// }
+
+];
+
+</script>
+
 <header class="hero">
-    <h1>Mérida | Segura y Soberana</h1>
-    <p>Archivo histórico de todas nuestras ediciones</p>
+
+<div class="hero-bg" id="heroBg"></div>
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<span class="badge">ÚLTIMA EDICIÓN</span>
+
+<h1 id="heroTitle"></h1>
+
+<p>
+Consulta todas nuestras publicaciones,
+reportajes y ediciones históricas.
+</p>
+
+<a id="heroLink" class="hero-btn">
+Leer edición destacada
+</a>
+
+</div>
+
 </header>
 
-<main class="container">
+<div class="container">
 
-    <div class="section-title">
-        <h2>Hemeroteca</h2>
-        <p>Consulta todas las publicaciones disponibles.</p>
-    </div>
+<section class="stats">
 
-    <div class="grid">
+<div class="stat">
+<div class="stat-number" id="totalEdiciones"></div>
+<div class="stat-label">Ediciones publicadas</div>
+</div>
 
-        <!-- <article class="card">
+<div class="stat">
+<div class="stat-number" id="totalAnios"></div>
+<div class="stat-label">Años archivados</div>
+</div>
 
-            <div class="cover">
-                03 JUN
-            </div>
+<div class="stat">
+<div class="stat-number">100%</div>
+<div class="stat-label">Acceso digital</div>
+</div>
 
-            <div class="content">
-                <div class="date">
-                    Edición • 3 de Junio de 2026
-                </div>
+</section>
 
-                <h3>Edición Semanal</h3>
+<div class="controls">
 
-                <p>
-                    Noticias destacadas, actualidad,
-                    análisis y reportajes especiales.
-                </p>
+<div class="search">
+<input
+type="text"
+id="search"
+placeholder="Buscar edición..."
+>
+</div>
 
-                <a href="2026-06-03/index.html" class="btn">
-                    Leer edición
-                </a>
+<select id="yearFilter">
+<option value="">Todos los años</option>
+</select>
 
-            </div>
+<select id="monthFilter">
+<option value="">Todos los meses</option>
+</select>
 
-        </article> -->
+</div>
 
-        
-        <article class="card">
+<div class="grid" id="grid"></div>
 
-            <div class="cover">
-                Edición
-            </div>
-
-            <div class="content">
-                <div class="date">
-                    Edición • Prueba
-                </div>
-
-                <h3>Edición Semanal</h3>
-
-                <p>
-                    Noticias destacadas, actualidad,
-                    análisis y reportajes especiales.
-                </p>
-
-                <a href="ediciones/prueba/index.html" class="btn">
-                    Leer edición
-                </a>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</main>
+</div>
 
 <footer>
-    © 2026 OSTI - IAPEBM · Todos los derechos reservados
+© 2026 OSTI - IAPEBM · Hemeroteca Digital
 </footer>
+
+<script>
+
+const hero = ediciones[0];
+
+document.getElementById("heroBg").style.backgroundImage =
+`url(${hero.portada})`;
+
+document.getElementById("heroTitle").textContent =
+hero.titulo;
+
+document.getElementById("heroLink").href =
+hero.enlace;
+
+document.getElementById("totalEdiciones").textContent =
+ediciones.length;
+
+document.getElementById("totalAnios").textContent =
+new Set(ediciones.map(e=>e.anio)).size;
+
+const yearFilter =
+document.getElementById("yearFilter");
+
+const monthFilter =
+document.getElementById("monthFilter");
+
+[...new Set(ediciones.map(e=>e.anio))]
+.sort()
+.forEach(a=>{
+yearFilter.innerHTML +=
+`<option value="${a}">${a}</option>`;
+});
+
+[...new Set(ediciones.map(e=>e.mes))]
+.forEach(m=>{
+monthFilter.innerHTML +=
+`<option value="${m}">${m}</option>`;
+});
+
+function render(){
+
+const search =
+document.getElementById("search")
+.value.toLowerCase();
+
+const year =
+yearFilter.value;
+
+const month =
+monthFilter.value;
+
+const filtered = ediciones.filter(e=>{
+
+const matchesSearch =
+e.titulo.toLowerCase().includes(search);
+
+const matchesYear =
+!year || e.anio===year;
+
+const matchesMonth =
+!month || e.mes===month;
+
+return matchesSearch &&
+matchesYear &&
+matchesMonth;
+
+});
+
+document.getElementById("grid").innerHTML =
+filtered.map(e=>`
+
+<div class="card">
+
+<div class="cover">
+
+${e.nueva ?
+'<span class="new-tag">NUEVA</span>' : ''}
+
+<img
+src="${e.portada}"
+alt="${e.titulo}"
+loading="lazy"
+>
+
+</div>
+
+<div class="card-content">
+
+<div class="date">
+${e.fecha}
+</div>
+
+<div class="title">
+${e.titulo}
+</div>
+
+<a
+class="btn"
+href="${e.enlace}">
+Leer edición
+</a>
+
+</div>
+
+</div>
+
+`).join('');
+
+}
+
+render();
+
+document.getElementById("search")
+.addEventListener("input",render);
+
+yearFilter.addEventListener("change",render);
+monthFilter.addEventListener("change",render);
+
+</script>
 
 </body>
 </html>

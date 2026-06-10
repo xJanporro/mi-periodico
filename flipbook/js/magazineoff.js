@@ -254,8 +254,10 @@ if (flipbookcfg.direction == 'rtl') {
 
 function resizeViewport() {
 
+    var TOPBAR_HEIGHT = 55;
+
     var width = $(window).width(),
-            height = $(window).height(),
+            height = $(window).height() - TOPBAR_HEIGHT,
             options = $('.magazine').turn('options');
 
     $('.magazine').removeClass('animated');
