@@ -3,7 +3,7 @@
 var proporzioneViewport = x / y;		
 	var larghezzaMinimaViewport = 0;		
 					
-//se il viewport � pi� stretto di 640 lo imposto a 640		
+//se il viewport � pi� stretto di 640 lo imposto a 640		
 	if (x < larghezzaMinimaViewport) {		
 		//alert('schermo troppo piccolo (' + x + ' x ' + y + ')');		
 		y = (larghezzaMinimaViewport * y) / x;		
@@ -25,7 +25,7 @@ var sfogliabileY = 800.00;
  		
 //calcolo la proporzione dello sfogliabile		
 var proporzioneSfogliabile = sfogliabileX / sfogliabileY;		
-//se la proporzione dello sfogliabile � maggiore della proporzione del viewport tengo fissa l'altezza		
+//se la proporzione dello sfogliabile � maggiore della proporzione del viewport tengo fissa l'altezza		
 if (proporzioneSfogliabile < proporzioneViewport){		
 	altezzaEffettiva 	= y - margineY;		
 	larghezzaEffettiva 	= (altezzaEffettiva * (proporzioneSfogliabile));		
@@ -164,15 +164,19 @@ function loadApp()
 
   //  $('.logo-backs2').show();
   
-   if(proporzioneViewport<1){		
-				display_style = 'single';		
-				width_new = larghezzaEffettiva;		
-        height_new = altezzaEffettiva;		
-				} else {		
-				display_style = 'double';		
-				width_new = 1600;		
-        height_new = 800;		
-				}		
+// Detectamos si es un smartphone o pantalla pequeña por el ancho del viewport
+var isMobile = (x < 768);
+
+if (proporzioneViewport < 1 && isMobile) {		
+    display_style = 'single'; // Un sola página para móviles en vertical		
+    width_new = larghezzaEffettiva;		
+    height_new = altezzaEffettiva;		
+} else {		
+    // Si es PC, tablet o un móvil en horizontal, usamos doble página adaptada
+    display_style = 'double';		
+    width_new = larghezzaEffettiva;		
+    height_new = altezzaEffettiva;		
+}	
   
 
     flipbook.turn({
@@ -350,10 +354,10 @@ $(".controlzoom").hide();
 
 
     $(window).resize(function () {
-        resizeViewport();
-    }).bind('orientationchange', function () {
-        location.reload();
-    });
+    resizeViewport();
+}).bind('orientationchange', function () {
+    setTimeout(resizeViewport, 300); // Un pequeño delay para que el navegador termine de girar
+});
 
     //Regions
     if ($.isTouch) {

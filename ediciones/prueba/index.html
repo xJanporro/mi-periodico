@@ -483,27 +483,23 @@ setTimeout(function(){
     <script>
 
 setInterval(function(){
-
     if(typeof jQuery !== "undefined"){
-
         try{
-
-            var page =
-            $(".magazine").turn("page");
+            var flipbook = $(".magazine");
+            var page = flipbook.turn("page");
+            var display = flipbook.turn("display");
 
             if(page){
-
-                document.getElementById(
-                "currentPage"
-                ).textContent = page;
-
+                if(display === "double" && page > 1 && page < flipbook.turn("pages")){
+                    // Si es doble página, muestra "2-3" en lugar de solo "2"
+                    document.getElementById("currentPage").textContent = page + "-" + (page + 1);
+                } else {
+                    document.getElementById("currentPage").textContent = page;
+                }
             }
-
         }catch(e){}
-
     }
-
-},300);
+}, 300);
 
 </script>
 

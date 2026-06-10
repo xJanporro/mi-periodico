@@ -270,17 +270,18 @@ function resizeViewport() {
 
 
     if ($('.magazine').turn('zoom') == 1) {
-        // Configuramos un margen horizontal y vertical para el contenedor
-        var marginHorizontal = 120; // Deja 60px libres de cada lado para las flechas
-        var marginVertical = 40;    // Deja un pequeño respiro arriba y abajo
+    // Si la pantalla es menor a 768px (móvil), reducimos los márgenes al mínimo
+    var isMobile = ($(window).width() < 768);
+    var marginHorizontal = isMobile ? 10 : 120; 
+    var marginVertical = isMobile ? 10 : 40;    
 
-        var bound = calculateBound({
-            width: options.width,
-            height: options.height,
-            // Le restamos el margen al ancho y alto de la ventana
-            boundWidth: Math.min(options.width, width - marginHorizontal),
-            boundHeight: Math.min(options.height, height - marginVertical)
-        });
+    // En móviles forzamos a que intente usar el máximo disponible del contenedor
+    var bound = calculateBound({
+        width: options.width,
+        height: options.height,
+        boundWidth: width - marginHorizontal,
+        boundHeight: height - marginVertical
+    });
 
         if (bound.width % 2 !== 0)
             bound.width -= 1;
