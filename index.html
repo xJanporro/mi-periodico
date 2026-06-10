@@ -1,31 +1,230 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hemeroteca - Mi Periódico</title>
-    <style>
-        body { font-family: sans-serif; padding: 40px; background-color: #f4f4f9; }
-        .contenedor { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #333; text-align: center; }
-        .edicion { display: block; padding: 15px; margin: 10px 0; background: #0056b3; color: white; text-decoration: none; border-radius: 5px; text-align: center; font-weight: bold; }
-        .edicion:hover { background: #003d82; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hemeroteca | Mi Periódico Digital</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#0f172a;
+    --accent:#2563eb;
+    --accent-hover:#1d4ed8;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#1e293b;
+    --muted:#64748b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.hero{
+    background:
+    linear-gradient(rgba(15,23,42,.85),
+    rgba(15,23,42,.85)),
+    url('assets/fondo.jpg') no-repeat;
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+    padding:90px 20px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:1.1rem;
+    opacity:.9;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.cover{
+    height:220px;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.content{
+    padding:24px;
+}
+
+.date{
+    color:var(--muted);
+    font-size:.9rem;
+    margin-bottom:10px;
+}
+
+.content h3{
+    margin-bottom:12px;
+}
+
+.content p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:18px;
+    background:var(--accent);
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:var(--accent-hover);
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="contenedor">
-        <h1>Mi Periódico Digital</h1>
-        <p>Bienvenido a nuestra hemeroteca. Selecciona la edición que deseas leer:</p>
+<header class="hero">
+    <h1>Mérida | Segura y Soberana</h1>
+    <p>Archivo histórico de todas nuestras ediciones</p>
+</header>
 
-        <!-- Aquí vas agregando los botones para cada edición nueva que subas -->
-        
-        <a href="2026-06-03/index.html" class="edicion">Edición 3 de Junio de 2026</a>
-        
-        <!-- El mes que viene, cuando subas la nueva carpeta, solo agregas otra línea aquí abajo: -->
-        <!-- <a href="2026-07-01/index.html" class="edicion">Edición 1 de Julio de 2026</a> -->
-        
+<main class="container">
+
+    <div class="section-title">
+        <h2>Hemeroteca</h2>
+        <p>Consulta todas las publicaciones disponibles.</p>
     </div>
+
+    <div class="grid">
+
+        <!-- <article class="card">
+
+            <div class="cover">
+                03 JUN
+            </div>
+
+            <div class="content">
+                <div class="date">
+                    Edición • 3 de Junio de 2026
+                </div>
+
+                <h3>Edición Semanal</h3>
+
+                <p>
+                    Noticias destacadas, actualidad,
+                    análisis y reportajes especiales.
+                </p>
+
+                <a href="2026-06-03/index.html" class="btn">
+                    Leer edición
+                </a>
+
+            </div>
+
+        </article> -->
+
+        
+        <article class="card">
+
+            <div class="cover">
+                Edición
+            </div>
+
+            <div class="content">
+                <div class="date">
+                    Edición • Prueba
+                </div>
+
+                <h3>Edición Semanal</h3>
+
+                <p>
+                    Noticias destacadas, actualidad,
+                    análisis y reportajes especiales.
+                </p>
+
+                <a href="ediciones/prueba/index.html" class="btn">
+                    Leer edición
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 OSTI - IAPEBM · Todos los derechos reservados
+</footer>
 
 </body>
 </html>

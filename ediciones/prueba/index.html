@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mérida | Segura y Soberana</title>
+    <meta name="description" content="Edición del periódico digital" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fuentes de Google -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans:400,700|Ubuntu:400,700|Great+Vibes"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Librerías base del Flipbook -->
+    <script
+      type="text/javascript"
+      src="../../flipbook/extras/jquery.min.1.7.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../flipbook/extras/jquery-ui-1.8.20.full.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../flipbook/extras/modernizr.2.5.3.min.js"
+    ></script>
+    <script type="text/javascript" src="../../flipbook/lib/hash.js"></script>
+
+    <!-- Configuración Core -->
+    <script type="text/javascript">
+      var flipbookcfg = {
+        url: ".\/data\/",
+        cover: 0,
+        numPages: 4,
+        textTip:
+          "Presione ESC para salir. Use las flechas del teclado para cambiar de páginas.",
+        background: "..\/..\/flipbook\/files\/backgrounds\/back14.svg",
+        showSlider: null,
+        showSocial: null,
+        showformat: 2,
+        title: "Periódico Digital",
+        tagtitle: "Flipbook",
+        description: "",
+        showDownload: null,
+        opacity: 0.4,
+        name: "f416605837d4a0ebad99052106718ce9870a280a202606.pdf",
+        direction: "ltr",
+        flipsound: null,
+        widthimg: null,
+        heightimg: null,
+      };
+    </script>
+
+    <style>
+      body {
+        overflow-y: scroll;
+        margin: 0;
+        padding: 0;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #888;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+      }
+      .logo-backs {
+        opacity: 0.4;
+      }
+      @media only screen and (max-width: 750px) {
+        .zoom-icon {
+          display: none;
+        }
+        .controls-pdf {
+          right: 20px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-backs"></div>
+
+    <!-- Efecto de sonido de página -->
+    <audio id="audio" src="../../flipbook/pics/page-flip.mp3"></audio>
+
+    <div id="canvas">
+      <div class="controls-pdf">
+        <div class="controlzoom" style="display: none">
+          <a
+            href="#"
+            id="zoomin"
+            style="
+              font-size: 16px;
+              color: #808080;
+              text-decoration: none;
+              font-weight: bold;
+            "
+          >
+            <img src="../../flipbook/pics/zoomin.png" alt="Acercar" />
+          </a>
+          <a
+            href="#"
+            id="zoomout"
+            style="
+              font-size: 16px;
+              color: #808080;
+              text-decoration: none;
+              font-weight: bold;
+            "
+          >
+            <img src="../../flipbook/pics/zoomout.png" alt="Alejar" />
+          </a>
+        </div>
+          <img
+            style="display: none"
+            src="../../flipbook/pics/down-pdf.png"
+            alt="Descargar PDF"
+          />
+        </a>
+        <div class="zoom-icon zoom-icon-in"></div>
+        <input
+          type="image"
+          class="fs"
+          src="../../flipbook/pics/fs.png"
+          onclick="openFullscreen()"
+          alt="Pantalla Completa"
+        />
+        <a href="#" id="prev" title="Anterior"></a>
+        <a href="#" id="next" title="Siguiente"></a>
+      </div>
+
+      <!-- Contenedor del Visor -->
+      <div class="magazine-viewport" id="flipfull">
+        <div class="container">
+          <div class="magazine">
+            <div ignore="1" class="next-button"></div>
+            <div ignore="1" class="previous-button"></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div id="slider-bar" class="turnjs-slider">
+            <div id="slider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts de carga diferida (yepnope) -->
+    <script type="text/javascript" src="../../flipbook/js/core2.js"></script>
+    <script type="text/javascript">
+      yepnope({
+        test: Modernizr.csstransforms,
+        yep: ["../../flipbook/lib/turn.min.js"],
+        nope: [
+          "../../flipbook/lib/turn.html4.min.js",
+          "../../flipbook/css/jquery.ui.html4.css",
+        ],
+        both: [
+          "../../flipbook/lib/zoom.min.js",
+          "../../flipbook/css/jquery.ui.css",
+          "../../flipbook/js/magazineoff.js",
+          "../../flipbook/css/magazine2.css",
+        ],
+        complete: loadApp,
+      });
+    </script>
+
+    <!-- Script de Pantalla Completa (Nativo) -->
+    <script>
+      var elem = document.getElementById("flipfull");
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE/Edge */
+          elem.msRequestFullscreen();
+        } else if (elem.webkitEnterFullscreen) {
+          elem.webkitEnterFullscreen(); /* iOS */
+        }
+      }
+    </script>
+  </body>
+</html>
